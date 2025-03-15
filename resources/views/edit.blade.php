@@ -9,7 +9,7 @@
 <h1>Izmeni podatke o gradu</h1>
 <form action="{{ route('weather.update', $weather->id) }}" method="POST">
     @csrf
-    @method('PUT') <!-- Koristi PUT metodu za ažuriranje -->
+    @method('PUT') 
     <input type="text" name="city" value="{{ $weather->city }}" placeholder="Grad" required>
     <input type="number" name="temp" value="{{ $weather->temp }}" placeholder="Temperatura" required>
     <button type="submit">Sačuvaj izmene</button>
