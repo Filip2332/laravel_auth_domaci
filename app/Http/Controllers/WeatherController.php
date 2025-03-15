@@ -41,7 +41,7 @@ class WeatherController extends Controller
     public function update(Request $request, Weather $weather)
     {
         $request->validate([
-            'city' => 'required|string', // Ispravljeno
+            'city' => 'required|string',
             'temp' => 'required|numeric',
         ]);
 
