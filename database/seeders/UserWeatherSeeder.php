@@ -20,6 +20,13 @@ class UserWeatherSeeder extends Seeder
             $this->command->info("You'll need to specify a temperature first");
         }
 
+
+        if (Weather::where('city', $city)->exists()) {
+            $this->command->error("City {$city} već postoji. Preskačem dodavanje.");
+            return;
+        }
+
+
         $faker = \Faker\Factory::create();
 
 

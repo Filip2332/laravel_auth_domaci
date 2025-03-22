@@ -23,6 +23,12 @@ class UserSeeder extends Seeder
 
       for($i = 0; $i < 500; $i++)
       {
+          if (User::where('email', $faker->email)->exists()) {
+              $this->command->error("Email {$faker->email} već postoji. Preskačem dodavanje.");
+              continue;
+          }
+
+
           User::create([
               'name' => $faker->name,
               'email' => $faker->email,
