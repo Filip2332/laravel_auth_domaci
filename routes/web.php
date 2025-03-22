@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Route;
@@ -7,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/prognoza/',[WeatherController::class,'index']);
 
 Route::resource('weather',WeatherController::class);
+
+Route::get("forecast/{city}", [ForecastController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
