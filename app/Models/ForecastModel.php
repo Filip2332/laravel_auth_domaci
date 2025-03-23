@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ForecastModel extends Model
 {
-    protected $table = 'forecast';
+    protected $table = 'forecasts';
     protected $fillable = ['city_id','temperature','forecast_date'];
 }
