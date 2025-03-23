@@ -11,10 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cities', function (Blueprint $table) {
-            $table->id(); //id->unsignedBigInteger
-            $table->string('name');
+        Schema::create('forecast', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('city_id');
+            $table->float('temperature');
+            $table->date('forecast_date');
             $table->timestamps();
+
+            $table->foreign('city_id')
+                ->references('id')
+                ->on('cities');
         });
     }
 
@@ -23,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('forecast');
     }
 };
