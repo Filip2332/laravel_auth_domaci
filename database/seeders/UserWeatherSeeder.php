@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Weather;
+use App\Models\WeatherModel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,7 +21,7 @@ class UserWeatherSeeder extends Seeder
         }
 
 
-        if (Weather::where('city', $city)->exists()) {
+        if (WeatherModel::where('city', $city)->exists()) {
             $this->command->error("City {$city} već postoji. Preskačem dodavanje.");
             return;
         }
@@ -32,10 +32,10 @@ class UserWeatherSeeder extends Seeder
 
         $this->command->getOutput()->progressStart(1000);
 
-        $weather = Weather::all();
+        $weather = WeatherModel::all();
 
         foreach ($weather as $data) {
-            Weather::create([
+            WeatherModel::create([
                 'city' => $city,
                 'temp' => $temp
             ]);

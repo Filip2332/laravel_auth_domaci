@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Weather;
+use App\Models\WeatherModel;
 
 class WeatherController extends Controller
 {
     public function index()
     {
-        $weather = Weather::all();
+        $weather = WeatherModel::all();
         return view('weather', compact('weather'));
     }
 
@@ -25,7 +25,7 @@ class WeatherController extends Controller
             'temp' => 'required|numeric',
         ]);
 
-        Weather::create([
+        WeatherModel::create([
             'city' => $request->city,
             'temp' => $request->temp
         ]);
@@ -33,15 +33,15 @@ class WeatherController extends Controller
         return redirect()->route('weather.index');
     }
 
-    public function edit(Weather $weather)
+    public function edit(WeatherModel $weather)
     {
         return view('edit', compact('weather'));
     }
 
-    public function update(Request $request, Weather $weather)
+    public function update(Request $request, WeatherModel $weather)
     {
         $request->validate([
-            'city' => 'required|string', 
+            'city' => 'required|string',
             'temp' => 'required|numeric',
         ]);
 
@@ -53,7 +53,7 @@ class WeatherController extends Controller
         return redirect()->route('weather.index');
     }
 
-    public function destroy(Weather $weather)
+    public function destroy(WeatherModel $weather)
     {
         $weather->delete();
         return redirect()->route('weather.index');
