@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('city_id');
 
             $table->foreign('city_id')
-                ->references('id') // -> pole city_id iz tabele weather je povezano sa poljem id iz tabele cities
+                ->references('id') // -> polje city_id iz tabele weather je povezano sa poljem id iz tabele cities
                 ->on('cities');
         });
     }
