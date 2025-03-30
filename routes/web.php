@@ -9,7 +9,7 @@ Route::get('/prognoza/',[WeatherController::class,'index']);
 
 Route::resource('weather',WeatherController::class);
 
-Route::get("forecast/{city}", [ForecastController::class, 'index']);
+Route::get("forecasts/{city:name}", [ForecastController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
