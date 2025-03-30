@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class ForecastsModel extends Model
 {
     protected $table = 'forecasts';
-    protected $fillable = ['city_id','temperature','forecast_date'];
+    protected $fillable = ['city_id','temperature','forecast_date','weather_type','probability'];
+
+    const WEATHERS = ["rainy","sunny","snowy"];
+
     public function states(){
         return $this->hasOne(CitiesModel::class , 'id','city_id');
     }
