@@ -1,4 +1,5 @@
-<form>
+<form method="post" action="{{route("weather.update")}}">
+    {{csrf_field()}}
     <input type="text" name="temperature" placeholder="Enter a temperature">
 
     <select name="city_id">
