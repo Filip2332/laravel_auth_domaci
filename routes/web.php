@@ -11,6 +11,12 @@ Route::resource('weather',WeatherController::class);
 
 Route::get("forecasts/{city:name}", [ForecastController::class, 'index']);
 
+Route::view("/admin/weather","admin.weather_index");
+
+
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
