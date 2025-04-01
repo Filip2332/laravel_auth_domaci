@@ -1,4 +1,4 @@
-<form method="post">
+<form method="post" action="{{route("forecast.create")}}">
     {{csrf_field()}}
     <input type="text" name="temperature" placeholder="Enter the temperature">
     <input type="date" name="forecast_date" placeholder="Pick a date">
@@ -13,6 +13,7 @@
             <option value="{{$city->id}}"> {{$city->name}} </option>
         @endforeach
     </select>
+    <button>Create</button>
 </form>
 
 

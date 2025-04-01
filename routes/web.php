@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminForecastController;
 use App\Http\Controllers\AdminWeatherController;
 use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ProfileController;
@@ -18,7 +19,7 @@ Route::post("/admin/weather/update", [AdminWeatherController::class,'update'])->
 
 Route::view("/admin/forecasts","admin.forecast_index");
 
-
+Route::post("/admin/forecasts/create",[AdminForecastController::class,'create'])->name("forecast.create");
 
 
 Route::get('/dashboard', function () {
