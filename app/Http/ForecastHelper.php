@@ -15,7 +15,10 @@ class ForecastHelper
             $icon = "fa-snowflake";
         } else if ($type === 'sunny') {
             $icon = "fa-sun";
-        } else {
+        } else if ($type === 'cloudy') {
+            $icon = "fa-cloud-sun";
+        }
+        else {
             $icon = "fa-question";
         }
 

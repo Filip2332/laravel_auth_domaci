@@ -51,6 +51,7 @@
 <i class="fa-solid fa-sun"></i>
 <i class="fa-solid fa-cloud-rain"></i>
 <i class="fa-solid fa-snowflake"></i>
+<i class="fa-solid fa-cloud-sun"></i>
 <i class="{{ trim($icon) }}"></i>
 
 
