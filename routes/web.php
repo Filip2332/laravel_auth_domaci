@@ -21,6 +21,8 @@ Route::view("/admin/forecasts","admin.forecast_index");
 
 Route::post("/admin/forecasts/create",[AdminForecastController::class,'create'])->name("forecast.create");
 
+Route::view('/',"welcome");
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
