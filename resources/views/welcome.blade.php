@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Session; @endphp
 @extends("layout")
 
 @section("content")
@@ -7,8 +8,8 @@
                 <form method="GET" action="{{ route("search") }}">
                     <div class="mb-3 position-relative">
                         <label for="city" class="form-label">Search City</label>
-                        @if(\Illuminate\Support\Facades\Session::has("error"))
-                            <p>{{ \Illuminate\Support\Facades\Session::get("error") }}</p>
+                        @if(Session::has("error"))
+                            <p>{{ Session::get("error") }}</p>
                          @endif
                         <div class="input-group">
                         <span class="input-group-text">

@@ -11,9 +11,9 @@ Route::get('/prognoza/',[WeatherController::class,'index']);
 
 Route::resource('weather',WeatherController::class);
 
-Route::get("forecasts/{city:name}", [ForecastController::class, 'index' ]);
+Route::get("/forecast/search", [ForecastsController::class, 'search']);
 
-Route::get('/search', [ForecastController::class, 'search'])->name('search');
+Route::get("forecasts/{city:name}", [ForecastsController::class, 'index' ]);
 
 Route::view("/admin/weather","admin.weather_index");
 

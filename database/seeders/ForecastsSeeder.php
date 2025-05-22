@@ -19,7 +19,10 @@ class ForecastsSeeder extends Seeder
 
         foreach($cities as $city){
 
+            $lastTemperature = null;
+
             for($i = 1; $i <= 5; $i++){
+                echo $lastTemperature;
                 $weatherType = ForecastsModel::WEATHERS[rand(0,3)];
                 $probability = null;
 
@@ -29,22 +32,28 @@ class ForecastsSeeder extends Seeder
 
                 $temperature = null;
 
-                switch ($weatherType) {
-                    case "sunny" :
-                        $temperature = rand(-50,50);
-                        break;
+                if($lastTemperature != null){
+                    $minTemperature = $lastTemperature-5;
+                    $maxTemperature = $lastTemperature+5;
+                    $temperature =rand($minTemperature,$maxTemperature);
+                } else {
+                    switch ($weatherType) {
+                        case "sunny" :
+                            $temperature = rand(-50,50);
+                            break;
 
-                            case "cloudy" :
+                        case "cloudy" :
                             $temperature = rand(-50,15);
                             break;
-                            case "rainy" :
+                        case "rainy" :
                             $temperature = rand(-10,50);
                             break;
-                            case "snowy" :
-                                $temperature = rand(-50,1);
+                        case "snowy" :
+                            $temperature = rand(-50,1);
                             break;
-                }
+                    }
 
+                }
 
                 ForecastModel::create([
                     "city_id" => $city->id,
@@ -53,8 +62,8 @@ class ForecastsSeeder extends Seeder
                     "weather_type" => $weatherType,
                     "probability" => $probability,
                 ]);
+                $lastTemperature = $temperature;
             }
-
-        };
+        }
     }
 }
