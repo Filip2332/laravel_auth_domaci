@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\WeatherModel;
 use Illuminate\Http\Request;
+use App\Models\Weather;
+
 
 class WeatherController extends Controller
 {
@@ -22,16 +24,20 @@ class WeatherController extends Controller
     {
         $request->validate([
             'city' => 'required|string',
-            'temp' => 'required|numeric',
+            'temperature' => 'required|numeric',
+            'city_id' => 'required|integer',
         ]);
 
-        WeatherModel::create([
+        Weather::create([
             'city' => $request->city,
-            'temp' => $request->temp
+            'temperature' => $request->temperature,
+            'city_id' => $request->city_id,
         ]);
 
-        return redirect()->route('weather.index');
+        return redirect()->back()->with('success', 'Uspešno sačuvano!');
     }
+
+
 
     public function edit(WeatherModel $weather)
     {

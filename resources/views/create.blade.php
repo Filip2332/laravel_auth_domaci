@@ -10,9 +10,12 @@
 <form action="{{ route('weather.store') }}" method="POST">
     @csrf
     <input type="text" name="city" placeholder="Grad" required>
-    <input type="number" name="temp" placeholder="Temperatura" required>
+    <input type="number" name="temperature" placeholder="Temperatura" required>
+    <input type="number" name="city_id" placeholder="ID grada" required>
     <button type="submit">Sačuvaj</button>
 </form>
+
+
 <a href="{{ route('weather.index') }}">
     <button>Nazad na listu</button>
 </a>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ForecastsModel;
+use App\Models\ForecastModel;
 use Illuminate\Http\Request;
 
 class AdminForecastController extends Controller
@@ -14,7 +14,7 @@ class AdminForecastController extends Controller
                 "forecast_date" => "required|date",
                 "weather_type" => "required",
             ]);
-            ForecastsModel::create($request->all());
+            ForecastModel::create($request->all());
             return redirect()->back();
         }
 
