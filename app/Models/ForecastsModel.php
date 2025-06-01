@@ -11,7 +11,9 @@ class ForecastsModel extends Model
 
     const WEATHERS = ["rainy","sunny","snowy","cloudy"];
 
-    public function states(){
-        return $this->hasOne(CitiesModel::class , 'id','city_id');
+    public function city()
+    {
+        return $this->belongsTo(CitiesModel::class, 'city_id', 'id');
     }
+
 }
