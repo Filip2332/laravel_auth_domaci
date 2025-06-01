@@ -13,7 +13,7 @@ Route::resource('weather',WeatherController::class);
 
 Route::get("/forecast/search", [ForecastController::class, 'search'])->name('search');
 
-Route::get("forecasts/{city:name}", [ForecastController::class, 'index' ]);
+Route::get("forecasts/{city:name}", [ForecastController::class, 'index' ])->name('forecast.permalink');
 
 Route::view("/admin/weather","admin.weather_index");
 
@@ -23,7 +23,10 @@ Route::view("/admin/forecasts","admin.forecast_index");
 
 Route::post("/admin/forecasts/create",[AdminForecastController::class,'create'])->name("forecast.create");
 
-Route::view('/',"welcome");
+Route::view('/',"welcome")->name("welcome");
+
+Route::get('/forecast/{cityName}', [ForecastController::class, 'index'])->name('forecast.city');
+
 
 
 Route::get('/dashboard', function () {

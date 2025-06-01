@@ -11,10 +11,22 @@ class ForecastController extends Controller
     public function search(Request $request)
     {
         $cityName = $request->get('city');
-        $cities = CitiesModel::where("name" , "LIKE", "%{$cityName}%")->get();
-
-        if(count($cities) == 0){
-            return redirect()->back()->with("error", "Error,city not found");
-        }
+        $cities = CitiesModel::where("name", "LIKE", "%{$cityName}%")->get();
+        return view("search_results",compact("cities"));
     }
+
+    public function index($cityName)
+    {
+        $city = \App\Models\CitiesModel::where('name', $cityName)->first();
+
+        if (!$city) {
+            return view('forecast.error', ['city' => $cityName]);
+        }
+
+        $forecasts = $city->forecasts;
+
+        return view('index', compact('city', 'forecasts'));
+    }
+
+
 }
