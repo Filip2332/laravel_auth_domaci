@@ -35,5 +35,4 @@ class ForecastController extends Controller
         return view('index', compact('city', 'forecasts'));
     }
 
-
 }

@@ -8,17 +8,23 @@ use App\Http\Controllers\WeatherController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/prognoza/',[WeatherController::class,'index']);
 
 Route::resource('weather',WeatherController::class);
 
 Route::get("/forecast/search", [ForecastController::class, 'search'])->name('search');
 
+Route::get('/favourite-city/{city}', [UserCities::class, 'favourite'])->name('user-cities.favourite');
+
+
 Route::get("forecasts/{city:name}", [ForecastController::class, 'index' ])->name('forecast.permalink');
 
 Route::view('/',"welcome")->name("welcome");
 
 Route::get('/forecast/{cityName}', [ForecastController::class, 'index'])->name('forecast.city');
+
+Route::get('/user-cities/favourite/{city}',[UserCities::class,'favourite'])->name('city.favourite');
 
 
 Route::prefix("/admin")->middleware(AdminCheckMiddleware::class)->group(function(){
