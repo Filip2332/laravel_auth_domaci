@@ -11,7 +11,6 @@
 
                     <div class="d-flex justify-content-between align-items-center p-3 mb-3 bg-light rounded shadow-sm">
 
-                        {{-- Link ka stranici grada --}}
                         <a href="{{ route('forecast.permalink', ['city' => $city->name]) }}"
                            class="d-flex align-items-center gap-2 text-decoration-none text-dark flex-grow-1">
                             <strong>{{ $city->name }}</strong>

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserCities;
 
 
 Route::get('/prognoza/',[WeatherController::class,'index']);
