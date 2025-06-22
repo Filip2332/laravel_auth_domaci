@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CitiesModel;
 use App\Models\ForecastsModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ForecastController extends Controller
 {
@@ -17,9 +18,13 @@ class ForecastController extends Controller
             return redirect()->back()->with("Error,there is no city with that name");
         }
 
+        $userFavourites = [];
+        if(Auth::check()) {
+            $userFavourites = Auth::user()->cityFavourites;
+            $userFavourites = $userFavourites->pluck('city_id')->toArray();
+        }
 
-
-        return view("search_results",compact("cities"));
+        return view("search_results",compact("cities","userFavourites"));
     }
 
     public function index($cityName)
