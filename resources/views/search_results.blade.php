@@ -31,7 +31,7 @@
                             @endif
                         </a>
 
-                        <a href="{{ route('city.favourite', ['city' => $city->id]) }}"
+                        <a href="{{ route('city.unfavourite', ['city' => $city->id]) }}"
                            class="btn btn-outline-light btn-sm ms-3 d-flex align-items-center justify-content-center"
                            style="width: 40px; height: 40px;"
                            title="{{ in_array($city->id, $userFavourites) ? 'Remove from favorites' : 'Add to favorites' }}">

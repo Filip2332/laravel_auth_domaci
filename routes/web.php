@@ -19,6 +19,7 @@ Route::get("/forecast/search", [ForecastController::class, 'search'])->name('sea
 Route::get('/favourite-city/{city}', [UserCities::class, 'favourite'])->name('user-cities.favourite');
 
 
+
 Route::get("forecasts/{city:name}", [ForecastController::class, 'index' ])->name('forecast.permalink');
 
 Route::view('/',"welcome")->name("welcome");
@@ -26,6 +27,7 @@ Route::view('/',"welcome")->name("welcome");
 Route::get('/forecast/{cityName}', [ForecastController::class, 'index'])->name('forecast.city');
 
 Route::get('/user-cities/favourite/{city}',[UserCities::class,'favourite'])->name('city.favourite');
+Route::get('/user-cities/unfavourite/{city}',[UserCities::class,'unfavourite'])->name('city.unfavourite');
 
 
 Route::prefix("/admin")->middleware(AdminCheckMiddleware::class)->group(function(){

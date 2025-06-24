@@ -15,9 +15,28 @@ class UserCities extends Controller
         }
 
         \App\Models\UserCities::create([
-           'city_id' =>  $city,
+            'city_id' => $city,
             'user_id' => $user->id
         ]);
+
+        return redirect()->back();
+    }
+
+    public function unfavourite($city)
+    {
+        $user = Auth::user();
+        if ($user === null) {
+            return redirect()->back()->with(['error' => 'You must be logged in to do that!']);
+        }
+        $userFavourite = \App\Models\UserCities::where([
+            "city_id" => $city,
+            "user_id" => $user->id
+        ])->first();
+
+        if ($userFavourite) {
+            $userFavourite->delete();
+        }
+
 
         return redirect()->back();
     }
