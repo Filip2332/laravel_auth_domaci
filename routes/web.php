@@ -6,6 +6,7 @@ use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Middleware\AdminCheckMiddleware;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserCities;
 
@@ -22,8 +23,21 @@ Route::get('/favourite-city/{city}', [UserCities::class, 'favourite'])->name('us
 
 Route::get("forecasts/{city:name}", [ForecastController::class, 'index' ])->name('forecast.permalink');
 
-Route::view('/',"welcome")->name("welcome");
+//Route::view('/',"welcome")->name("welcome");
+Route::get('/',function() {
 
+    $userFavourites =[];
+
+    $user = Auth::user();
+
+    if($user !== null) {
+        $userFavourites = \App\Models\UserCities::where([
+            "user_id" => $user->id
+        ])->get();
+    }
+
+    return view('welcome',compact('userFavourites'));
+});
 Route::get('/forecast/{cityName}', [ForecastController::class, 'index'])->name('forecast.city');
 
 Route::get('/user-cities/favourite/{city}',[UserCities::class,'favourite'])->name('city.favourite');
