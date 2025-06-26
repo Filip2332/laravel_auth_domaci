@@ -11,7 +11,9 @@ class UserCities extends Model
     protected $table = 'user_cities';
     protected $fillable = ["user_id", "city_id"];
 
-    public function city(){
-        return $this->hasOne('App\Models\Cities', 'id', 'city_id');
+    public function city()
+    {
+        return $this->belongsTo(\App\Models\CitiesModel::class, 'city_id');
     }
+
 }

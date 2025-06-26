@@ -21,7 +21,7 @@ class ForecastsSeeder extends Seeder
 
             $lastTemperature = null;
 
-            for($i = 1; $i <= 5; $i++){
+            for($i = 0; $i <= 5; $i++){
                 echo $lastTemperature;
                 $weatherType = ForecastsModel::WEATHERS[rand(0,3)];
                 $probability = null;
