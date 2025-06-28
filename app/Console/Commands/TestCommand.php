@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
-class GetRealWeather extends Command
+class TestCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'weather:get-real';
+    protected $signature = 'app:test-command';
 
     /**
      * The console command description.
@@ -26,13 +26,17 @@ class GetRealWeather extends Command
      */
     public function handle()
     {
-        $url = "https://reqres.in/api/users?page=2";
-        $response = Http::withoutVerifying()->withHeaders([
-            'x-api-key' => 'reqres-free-v1'
-        ])->get($url);
+       // $response = Http::get('http://127.0.0.1:8000/api/test');
+        //dd($response->json());
 
-        $jsonResponse = $response->body();
-        $jsonResponse = json_decode($jsonResponse, true);
-        dd($jsonResponse['data'][0]['email']);
+
+        $response = Http::withoutVerifying()->withHeaders([
+            'x-api-key' => 'reqres-free-v1',
+        ])->post("https://reqres.in/api/create",[
+            'name' => "Filip",
+            'job' => "Programmer",
+            ]);
+
+        dd($response->json());
     }
 }
