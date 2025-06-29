@@ -26,17 +26,11 @@ class TestCommand extends Command
      */
     public function handle()
     {
-       // $response = Http::get('http://127.0.0.1:8000/api/test');
+        // $response = Http::get('http://127.0.0.1:8000/api/test');
         //dd($response->json());
 
 
-        $response = Http::withoutVerifying()->withHeaders([
-            'x-api-key' => 'reqres-free-v1',
-        ])->post("https://reqres.in/api/create",[
-            'name' => "Filip",
-            'job' => "Programmer",
-            ]);
-
-        dd($response->json());
+        $response = Http::withoutVerifying()->post("https://api.weatherapi.com/v1/current.json?key=491efb081a074d7a831173013252606&q=London&aqi=no",);
+        dd($response->body());
     }
 }
