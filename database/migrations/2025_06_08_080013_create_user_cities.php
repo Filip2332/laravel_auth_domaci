@@ -11,10 +11,10 @@ class CreateUserCitiesTable extends Migration
         Schema::create('user_cities', function (Blueprint $table) {
             $table->id();
 
-            // Pretpostavka: tvoja tabela korisnika je 'users'
+
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
 
-            // Promeni 'cities' ako ti se tabela zove drugačije (npr. 'cities_models')
+
             $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
 
             $table->timestamps();

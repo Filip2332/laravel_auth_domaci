@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class CitiesModel extends Model
 {
     protected $table = 'cities';
-    protected $fillable = ['city'];
+    protected $fillable = ['name'];
 
     public function forecasts(){
         return $this->hasMany(ForecastsModel::class, 'city_id','id')
@@ -18,7 +18,8 @@ class CitiesModel extends Model
 
     public function todaysForecast(){
         return $this->hasOne(ForecastsModel::class, 'city_id','id')
-            ->whereDate('forecast_date',  Carbon::now());
+            ->whereDate('forecast_date', Carbon::now()->toDateString());
+
     }
 
 }
