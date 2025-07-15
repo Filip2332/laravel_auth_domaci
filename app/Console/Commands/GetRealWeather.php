@@ -28,7 +28,6 @@ class GetRealWeather extends Command
      */
     public function handle()
     {
-
         $city = $this->argument('city');
 
         $dbCity = CitiesModel::where(['name' => $city])->first();
@@ -76,7 +75,7 @@ class GetRealWeather extends Command
 
 
         ForecastsModel::create($forecast);
-        $this->info("Prognoza je uspešno sačuvana.");
+        $this->info("Forecast is saved");
 
     }
 }
