@@ -3,8 +3,16 @@
 @section('content')
     <div class="container py-4">
         <h2 class="mb-4">Forecast for <strong>{{ $city->name }}</strong></h2>
+        @if($sunrise && $sunset)
+            <div class="alert alert-info text-center">
+                <h4>🌅 Sunrise & 🌇 Sunset</h4>
+                <p>Sunrise: <strong>{{ $sunrise }}</strong></p>
+                <p>Sunset: <strong>{{ $sunset }}</strong></p>
+            </div>
+        @endif
 
-        @if($forecasts->isEmpty())
+
+    @if($forecasts->isEmpty())
             <div class="alert alert-warning">No forecasts available for this city.</div>
         @else
             <ul class="list-group">

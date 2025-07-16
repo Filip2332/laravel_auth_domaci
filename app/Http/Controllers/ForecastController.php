@@ -41,7 +41,25 @@ class ForecastController extends Controller
 
         $forecasts = $city->forecasts;
 
-        return view('index', compact('city', 'forecasts'));
+        $url = "https://api.weatherapi.com/v1/astronomy.json";
+
+        $response = \Illuminate\Support\Facades\Http::withoutVerifying()->get($url, [
+            'key' => '491efb081a074d7a831173013252606',
+            'q' => $cityName,
+            'dt' => now()->format('Y-m-d'),
+        ]);
+
+        $sunrise = null;
+        $sunset = null;
+
+        if ($response->successful()) {
+            $data = $response->json();
+            $sunrise = $data['astronomy']['astro']['sunrise'] ?? null;
+            $sunset = $data['astronomy']['astro']['sunset'] ?? null;
+        }
+
+        return view('index', compact('city', 'forecasts', 'sunrise', 'sunset'));
     }
+
 
 }
